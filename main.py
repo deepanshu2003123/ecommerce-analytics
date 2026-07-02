@@ -1,7 +1,7 @@
 import csv
 import os
 
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 class Product:
     def __init__(self, product_id, name, category, price, rating, discount):
@@ -31,7 +31,7 @@ products = []
 customers = []
 orders = []
 
-with open("data/products.csv", "r") as file:
+with open(os.path.join(BASE_DIR, "data/products.csv"), "r") as file:
     reader = csv.DictReader(file)
     for row in reader:
         product = Product(
@@ -44,7 +44,7 @@ with open("data/products.csv", "r") as file:
         )
         products.append(product)
 
-with open("data/customers.csv", "r") as file:
+with open(os.path.join(BASE_DIR, "data/customers.csv"), "r") as file:
     reader = csv.DictReader(file)
     for row in reader:
         customer = Customer(
@@ -55,7 +55,7 @@ with open("data/customers.csv", "r") as file:
         )
         customers.append(customer)
 
-with open("data/orders.csv", "r") as file:
+with open(os.path.join(BASE_DIR, "data/orders.csv"), "r") as file:
     reader = csv.DictReader(file)
     for row in reader:
         order = Order(
